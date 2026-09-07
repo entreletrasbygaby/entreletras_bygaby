@@ -12,7 +12,7 @@
  --line:#e9dfd8;--serif:Georgia,"Times New Roman",serif;
 }
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}
-a{color:inherit;text-decoration:none}.top{background:var(--ink);color:#fff;text-align:center;font-size:12px;letter-spacing:1.5px;padding:8px}
+a{color:inherit;text-decoration:none}
 header{position:sticky;top:0;z-index:10;background:rgba(250,246,241,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .nav{max-width:1180px;margin:auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:25px}
 .brand{font-family:var(--serif);font-size:27px}.brand i{color:var(--rose);font-weight:normal}
@@ -50,7 +50,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15}h1{font-size:
 .cover{height:185px;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px;font-family:var(--serif);font-size:28px}.c1{background:linear-gradient(140deg,var(--rose2),#f6e9e6)}.c2{background:linear-gradient(140deg,var(--lilac),#eee9f2)}.c3{background:linear-gradient(140deg,var(--sage),#eaf0e8)}
 .cover.has-cover{height:390px;padding:14px}.cover.has-cover img{width:100%;height:100%;object-fit:contain;display:block}
 .review-body{padding:23px}.review-body small{color:var(--rose);text-transform:uppercase;letter-spacing:2px}.review-body h3{font-size:25px;margin:8px 0}.review-body p{font-size:14px;color:var(--muted);text-align:justify;text-justify:inter-word}.stars{letter-spacing:3px;color:#ad7e7d}
-.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.service{padding:28px;border-radius:20px;background:var(--paper);border:1px solid var(--line)}.service:nth-child(2){background:#f3eee8}.service:nth-child(3){background:#f0ebf3}.service:nth-child(4){background:#eef2ec}.service:nth-child(5){background:#f7e8e5}.service:nth-child(6){background:#f2ece4}.num{font-family:var(--serif);font-size:15px;color:var(--rose)}.service h3{font-size:25px;margin:10px 0}.service p{font-size:14px;color:var(--muted)}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.service{padding:28px;border-radius:20px;background:var(--paper);border:1px solid var(--line);overflow:hidden}.service:nth-child(2){background:#f3eee8}.service:nth-child(3){background:#f0ebf3}.service:nth-child(4){background:#eef2ec}.service:nth-child(5){background:#f7e8e5}.service:nth-child(6){background:#f2ece4}.num{font-family:var(--serif);font-size:15px;color:var(--rose)}.service h3{font-size:25px;margin:10px 0}.service p{font-size:14px;color:var(--muted)}
+.service-img{width:calc(100% + 56px);margin:-28px -28px 20px -28px;display:block;aspect-ratio:1/1;object-fit:cover;box-shadow:0 8px 20px rgba(70,55,50,.10)}
 .recs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.rec{padding:28px;min-height:260px;border-radius:24px;display:flex;flex-direction:column;justify-content:flex-end}.rec:nth-child(1){background:var(--sand)}.rec:nth-child(2){background:var(--lilac)}.rec:nth-child(3){background:var(--sage)}.rec h3{font-size:29px;margin:8px 0}.rec p{margin:0;color:#5f5854}
 .timeline{display:grid;grid-template-columns:1fr 1fr;gap:20px}.event{background:white;border-left:4px solid var(--rose);padding:22px;border-radius:0 17px 17px 0;box-shadow:0 10px 25px rgba(70,55,50,.06)}.event strong{font-family:var(--serif);font-size:21px}.event p{color:var(--muted);margin-bottom:0}
 .culture{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.culture article{padding:30px;border-radius:23px;background:white;border:1px solid var(--line)}.culture .symbol{font-size:35px}.culture h3{font-size:26px}
@@ -60,7 +61,6 @@ footer{padding:40px 24px;text-align:center;color:var(--muted);font-size:13px}.so
 </style>
 </head>
 <body>
-<div class="top">UN RINCÓN PARA QUIENES CREEN QUE UNA HISTORIA PUEDE CAMBIARNOS</div>
 <header><div class="nav">
 <a class="brand" href="#inicio">entreletras_<i>bygaby</i></a>
 <nav>
@@ -89,14 +89,14 @@ footer{padding:40px 24px;text-align:center;color:var(--muted);font-size:13px}.so
 </div></section>
 
 <section class="section" id="servicios"><div class="wrap">
-<div class="section-title"><div class="kicker">Para autores y proyectos</div><h2>Servicios</h2><p>Creo contenido para comunicar libros, proyectos y marcas con una mirada creativa y editorial.</p></div>
+<div class="section-title"><h2>Servicios</h2><p>Creo contenido para autores y emprendedores con una mirada creativa y editorial.</p></div>
 <div class="services">
-<article class="service"><span class="num">01</span><h3>Producción de guiones</h3><p>Ideas y guiones para reels y videos que cuentan una historia y mantienen la atención.</p></article>
-<article class="service"><span class="num">02</span><h3>Fotoproducto</h3><p>Fotografías cuidadas de libros y productos para mostrar tu proyecto de manera atractiva.</p></article>
-<article class="service"><span class="num">03</span><h3>Reels</h3><p>Concepto, grabación/producción y edición de videos cortos para redes sociales.</p></article>
-<article class="service"><span class="num">04</span><h3>Historias</h3><p>Secuencias de stories para informar, generar conversación y acercarte a tu comunidad.</p></article>
-<article class="service"><span class="num">05</span><h3>Creación de contenido</h3><p>Ideas, copies y piezas visuales alineadas con la identidad de cada proyecto.</p></article>
-<article class="service"><span class="num">06</span><h3>Contenido para autores</h3><p>Propuestas específicas para escritores que quieren mostrar su obra y conectar con lectores.</p></article>
+<article class="service"><img class="service-img" src="images/servicios/servicio-guiones.jpg" alt="Producción de guiones"><span class="num">01</span><h3>Producción de guiones</h3><p>Ideas y guiones para reels y videos que cuentan una historia y mantienen la atención.</p></article>
+<article class="service"><img class="service-img" src="images/servicios/servicio-fotoproducto.jpg" alt="Fotoproducto"><span class="num">02</span><h3>Fotoproducto</h3><p>Fotografías de productos para mostrar tu proyecto de manera atractiva.</p></article>
+<article class="service"><img class="service-img" src="images/servicios/servicio-reels.jpg" alt="Reels"><span class="num">03</span><h3>Reels</h3><p>Concepto, grabación/producción y edición de videos cortos para redes sociales.</p></article>
+<article class="service"><img class="service-img" src="images/servicios/servicio-historias.jpg" alt="Historias"><span class="num">04</span><h3>Historias</h3><p>Secuencias de stories para informar, generar conversación y acercarte a tu comunidad.</p></article>
+<article class="service"><img class="service-img" src="images/servicios/servicio-creacion-contenido.jpg" alt="Creación de contenido"><span class="num">05</span><h3>Creación de contenido</h3><p>Ideas, copies y piezas visuales alineadas con la identidad de cada proyecto.</p></article>
+<article class="service"><img class="service-img" src="images/servicios/servicio-contenido-autores.jpg" alt="Contenido para autores"><span class="num">06</span><h3>Contenido para autores</h3><p>Propuestas específicas para escritores que quieren mostrar su obra y conectar con lectores.</p></article>
 </div></div></section>
 
 <section class="section alt" id="cultura"><div class="wrap">
