@@ -53,6 +53,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15}h1{font-size:
 .reviews-more-wrap{text-align:center;margin-top:26px}
 .reviews-more-btn{border:1px solid var(--ink);background:transparent;color:var(--ink);padding:11px 26px;border-radius:25px;font:inherit;font-size:14px;cursor:pointer;transition:.2s ease}
 .reviews-more-btn:hover{background:var(--ink);color:#fff}
+.review-text-toggle{display:none;background:none;border:none;color:var(--rose);font-weight:bold;font-size:12px;padding:8px 0 0;margin:0;cursor:pointer;text-align:left;font-family:inherit}
 .cover{flex:0 0 120px;width:120px;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font-family:var(--serif);font-size:13px}.c1{background:linear-gradient(140deg,var(--rose2),#f6e9e6)}.c2{background:linear-gradient(140deg,var(--lilac),#eee9f2)}.c3{background:linear-gradient(140deg,var(--sage),#eaf0e8)}.c4{background:linear-gradient(140deg,#cfe6e3,#eaf5f3)}
 .cover.has-cover{padding:8px;background:transparent}.cover.has-cover img,.cover.has-cover video{width:100%;height:100%;object-fit:contain;display:block}
 .review-body{padding:16px 20px;flex:1;display:flex;flex-direction:column;justify-content:center}.review-body small{color:var(--rose);text-transform:uppercase;letter-spacing:1px;font-size:10px}.review-body h3{font-size:17px;margin:5px 0;line-height:1.25}.review-body p{font-size:13px;color:var(--muted);text-align:left}.stars{letter-spacing:1px;color:#ad7e7d;font-size:12px}
@@ -65,7 +66,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15}h1{font-size:
 .culture-icon{width:56px;height:56px;border-radius:14px;display:block;margin-bottom:14px;object-fit:cover;box-shadow:0 4px 10px rgba(70,55,50,.15)}
 .contact{background:linear-gradient(135deg,var(--rose2),var(--lilac));border-radius:30px;padding:55px;text-align:center}.contact h2{font-size:32px;margin:10px}.contact p{max-width:620px;margin:15px auto;color:var(--muted)}.contact form{max-width:650px;margin:28px auto 0;display:grid;gap:12px;text-align:left}.contact input,.contact textarea{width:100%;padding:14px 16px;border:1px solid #d8c9c4;border-radius:12px;background:rgba(255,255,255,.85);font:inherit;color:var(--ink)}.contact textarea{min-height:130px;resize:vertical}.contact button{border:0;cursor:pointer;padding:14px;border-radius:25px;background:var(--ink);color:#fff;font-weight:bold}
 footer{padding:40px 24px;text-align:center;color:var(--muted);font-size:13px}.social{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}.social a{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:var(--paper);border:1px solid var(--line);transition:background .2s}.social a:hover{background:var(--rose2)}.social svg{width:20px;height:20px;fill:var(--ink)}
-@media(max-width:850px){.nav{align-items:flex-start;flex-direction:column}.hero{min-height:0}.hero-inner{padding:20px 20px;gap:20px}.hero-inner,.about{grid-template-columns:1fr}.visual{min-height:0;padding:10px 0}.circle{width:300px;height:300px}.circle:before{width:330px;height:330px}.reviews,.services,.recs,.culture,.timeline{grid-template-columns:1fr}.section{padding:28px 20px}.review{flex-direction:row}.cover{width:120px;flex:0 0 120px;height:auto;padding:8px}.review-body{padding:12px 14px}.review-body h3{font-size:15px}.review-body p{font-size:12.5px}.stars{font-size:11px}}
+@media(max-width:850px){.nav{align-items:flex-start;flex-direction:column}.hero{min-height:0}.hero-inner{padding:20px 20px;gap:20px}.hero-inner,.about{grid-template-columns:1fr}.visual{min-height:0;padding:10px 0}.circle{width:300px;height:300px}.circle:before{width:330px;height:330px}.reviews,.services,.recs,.culture,.timeline{grid-template-columns:1fr}.section{padding:28px 20px}.review{flex-direction:row}.cover{width:120px;flex:0 0 120px;height:auto;padding:8px}.review-body{padding:12px 14px}.review-body h3{font-size:15px}.review-body p{font-size:12.5px}.stars{font-size:11px}.review-body p.review-text{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}.review-body p.review-text.expanded{-webkit-line-clamp:unset;display:block}.review-text-toggle{display:inline-block}}
 </style>
 </head>
 <body>
@@ -230,11 +231,30 @@ function renderReviews(list){
         <div class="stars">${r.stars}</div>
         <small>${r.category}</small>
         <h3>${r.title}</h3>
-        <p>${r.text}</p>
+        <p class="review-text">${r.text}</p>
+        <button class="review-text-toggle" type="button">Leer más</button>
       </div>
     </article>
   `).join('');
+  requestAnimationFrame(checkReviewTextOverflow);
 }
+
+function checkReviewTextOverflow(){
+  document.querySelectorAll('.review-text').forEach(p => {
+    const btn = p.nextElementSibling;
+    if(btn && btn.classList.contains('review-text-toggle')){
+      if(!p.classList.contains('expanded')){
+        btn.style.display = p.scrollHeight > p.clientHeight + 2 ? '' : 'none';
+      }
+    }
+  });
+}
+
+let reviewResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(reviewResizeTimer);
+  reviewResizeTimer = setTimeout(checkReviewTextOverflow, 150);
+});
 
 const categories = ["Todas", ...new Set(reviews.map(r => r.category))];
 
@@ -278,6 +298,14 @@ reviewsMoreBtn.addEventListener('click', () => {
 });
 
 updateReviewsView();
+
+document.getElementById('reviews-container').addEventListener('click', (e) => {
+  const btn = e.target.closest('.review-text-toggle');
+  if(!btn) return;
+  const textEl = btn.previousElementSibling;
+  const expanded = textEl.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Ver menos' : 'Leer más';
+});
 </script>
 
 <script>
