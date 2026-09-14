@@ -257,6 +257,7 @@ window.addEventListener('resize', () => {
   clearTimeout(reviewResizeTimer);
   reviewResizeTimer = setTimeout(checkReviewTextOverflow, 150);
 });
+window.addEventListener('load', checkReviewTextOverflow);
 
 const categories = ["Todas", ...new Set(reviews.map(r => r.category))];
 
