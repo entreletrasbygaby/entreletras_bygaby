@@ -63,6 +63,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15}h1{font-size:
 .recs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.rec{padding:28px;min-height:260px;border-radius:24px;display:flex;flex-direction:column;justify-content:flex-end}.rec:nth-child(1){background:var(--sand)}.rec:nth-child(2){background:var(--lilac)}.rec:nth-child(3){background:var(--sage)}.rec h3{font-size:29px;margin:8px 0}.rec p{margin:0;color:#5f5854}
 .timeline{display:grid;grid-template-columns:1fr 1fr;gap:20px}.event{background:white;border-left:4px solid var(--rose);padding:22px;border-radius:0 17px 17px 0;box-shadow:0 10px 25px rgba(70,55,50,.06)}.event strong{font-family:var(--serif);font-size:21px}.event p{color:var(--muted);margin-bottom:0}
 .culture{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.culture article{padding:30px;border-radius:23px;background:white;border:1px solid var(--line);overflow:hidden}.culture .symbol{font-size:35px}.culture h3{font-size:26px}.culture article.culture-card{cursor:pointer;transition:box-shadow .2s,transform .2s}.culture article.culture-card:hover{box-shadow:0 14px 30px rgba(70,55,50,.12);transform:translateY(-2px)}.culture-cta{display:inline-block;margin-top:12px;font-size:13px;color:var(--rose);font-weight:bold;letter-spacing:.3px}.cultura-galeria{margin-top:40px}.cultura-galeria h3{font-size:24px;margin:0 0 6px}.cultura-galeria .galeria-desc{color:var(--muted);font-size:14px;margin:0 0 22px}.gallery-card{flex:0 0 280px;scroll-snap-align:start;background:white;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 12px 35px rgba(70,55,50,.07)}.gallery-card img{width:100%;height:360px;object-fit:cover;display:block}.gallery-card video{width:100%;height:360px;object-fit:contain;display:block;background:#000}.gallery-card .caption{padding:12px 14px;font-size:13px;color:var(--muted)}
+.gallery-card-pair{flex:0 0 460px}.gallery-card-pair .pair-covers{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line)}.gallery-card-pair .pair-covers img{width:100%;height:320px;object-fit:cover;display:block}
+@media(max-width:600px){.gallery-card-pair{flex:0 0 88vw}.gallery-card-pair .pair-covers img{height:260px}}
 .culture-icon{width:56px;height:56px;border-radius:14px;display:block;margin-bottom:14px;object-fit:cover;box-shadow:0 4px 10px rgba(70,55,50,.15)}
 .contact{background:linear-gradient(135deg,var(--rose2),var(--lilac));border-radius:30px;padding:55px;text-align:center}.contact h2{font-size:32px;margin:10px}.contact p{max-width:620px;margin:15px auto;color:var(--muted)}.contact form{max-width:650px;margin:28px auto 0;display:grid;gap:12px;text-align:left}.contact input,.contact textarea{width:100%;padding:14px 16px;border:1px solid #d8c9c4;border-radius:12px;background:rgba(255,255,255,.85);font:inherit;color:var(--ink)}.contact textarea{min-height:130px;resize:vertical}.contact button{border:0;cursor:pointer;padding:14px;border-radius:25px;background:var(--ink);color:#fff;font-weight:bold}
 footer{padding:40px 24px;text-align:center;color:var(--muted);font-size:13px}.social{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}.social a{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:var(--paper);border:1px solid var(--line);transition:background .2s}.social a:hover{background:var(--rose2)}.social svg{width:20px;height:20px;fill:var(--ink)}
@@ -311,21 +313,34 @@ document.getElementById('reviews-container').addEventListener('click', (e) => {
 <script>
 const culturaMuestras = {"borges": {"titulo": "Borges: Ecos de un Nombre (Muestra inmersiva)", "desc": "Centro Cultural Recoleta - Agosto 2026 - fotos y video de la muestra.", "items": [{"type": "video", "src": "borges-muestra-recorrido.mp4", "poster": "borges-muestra-poster.jpg", "caption": "Recorrido por la muestra inmersiva"}, {"type": "image", "src": "borges-cartel-muestra.jpg", "caption": "Borges: Ecos de un Nombre — cartel de la muestra"}, {"type": "image", "src": "borges-hologram-sentado.jpg", "caption": "Proyección holográfica de Borges en la instalación"}, {"type": "image", "src": "borges-el-aleph.jpg", "caption": "El Aleph, de Jorge Luis Borges"}, {"type": "image", "src": "borges-retrato.jpg", "caption": "Retrato de Borges en la muestra"}, {"type": "image", "src": "borges-habitacion.jpg", "caption": "Recreación de su habitación"}, {"type": "image", "src": "borges-habitacion-2.jpg", "caption": "Recreación de su habitación, vista desde la entrada"}, {"type": "image", "src": "borges-foto-mujer.jpg", "caption": "Fotografía de Borges junto a su esposa María Kodama"}, {"type": "image", "src": "borges-linea-tiempo.jpg", "caption": "Línea de tiempo con la biografía de Borges"}, {"type": "image", "src": "borges-memes.jpg", "caption": "Memes borgeanos exhibidos en la muestra (@memesborgeanos)"}]},
 "visitas": {"titulo": "Visitas y encuentros literarios", "desc": "Visitas guiadas, la Feria del Libro de Buenos Aires y clubes de lectura — reemplazá estos ejemplos por tus fotos y videos.", "items": [{"type": "image", "src": "visita-guiada-ejemplo.jpg", "caption": "Visita guiada — reemplazá por tu foto"}, {"type": "image", "src": "feria-del-libro-ejemplo.jpg", "caption": "Feria del Libro de Buenos Aires — reemplazá por tu foto"}, {"type": "image", "src": "club-de-lectura-ejemplo.jpg", "caption": "Club de lectura — reemplazá por tu foto"}]},
-"pantalla": {"titulo": "Libros en pantalla", "desc": "Novelas de Harlan Coben que se convirtieron en series de Netflix.", "items": [{"type": "image", "src": "portada-el-extrano-harlan-coben.jpg", "caption": "El extraño (The Stranger), de Harlan Coben — Un padre de familia recibe de un desconocido una revelación que pone en duda todo lo que creía saber sobre su esposa, y esa sospecha lo arrastra a descubrir secretos que la familia entera venía ocultando. Fue adaptada por Netflix en la miniserie homónima, protagonizada por Richard Armitage."}, {"type": "image", "src": "portada-enganos-fool-me-once-harlan-coben.jpg", "caption": "Engaños (Fool Me Once), de Harlan Coben — Una veterana de guerra instala una cámara oculta en su casa tras la muerte de su marido y, días después, lo ve aparecer con vida en la grabación junto a sus hijos. Netflix la llevó a la pantalla en la miniserie \"Fool Me Once\", con Michelle Keegan, una de las series más vistas de la plataforma en su semana de estreno."}]}};
+"pantalla": {"titulo": "Libros en pantalla", "desc": "Novelas de Harlan Coben que se convirtieron en series de Netflix — tapa del libro y afiche de la serie.", "items": [{"type": "pair", "cover": "portada-el-extrano-harlan-coben.jpg", "poster": "serie-el-extrano-netflix.jpg", "caption": "El extraño (The Stranger), de Harlan Coben — Un padre de familia recibe de un desconocido una revelación que pone en duda todo lo que creía saber sobre su esposa, y esa sospecha lo arrastra a descubrir secretos que la familia entera venía ocultando. Fue adaptada por Netflix en la miniserie homónima, protagonizada por Richard Armitage."}, {"type": "pair", "cover": "portada-enganos-fool-me-once-harlan-coben.jpg", "poster": "serie-enganos-netflix.jpg", "caption": "Engaños (Fool Me Once), de Harlan Coben — Una veterana de guerra instala una cámara oculta en su casa tras la muerte de su marido y, días después, lo ve aparecer con vida en la grabación junto a sus hijos. Netflix la llevó a la pantalla en la miniserie \"Fool Me Once\", con Michelle Keegan, una de las series más vistas de la plataforma en su semana de estreno."}]}};
 
 function renderGaleria(key){
   const m = culturaMuestras[key];
   if(!m) return;
   document.getElementById('galeria-titulo').textContent = m.titulo;
   document.getElementById('galeria-desc').textContent = m.desc;
-  document.getElementById('galeria-container').innerHTML = m.items.map(it => `
-    <div class="gallery-card">
-      ${it.type === 'video'
-        ? `<video controls playsinline poster="${it.poster || ''}"><source src="${it.src}" type="video/mp4"></video>`
-        : `<img src="${it.src}" alt="${it.caption || ''}" loading="lazy">`}
-      ${it.caption ? `<p class="caption">${it.caption}</p>` : ''}
-    </div>
-  `).join('');
+  document.getElementById('galeria-container').innerHTML = m.items.map(it => {
+    if(it.type === 'pair'){
+      return `
+        <div class="gallery-card gallery-card-pair">
+          <div class="pair-covers">
+            <img src="${it.cover}" alt="Tapa del libro — ${it.caption || ''}" loading="lazy">
+            <img src="${it.poster}" alt="Afiche de la serie en Netflix — ${it.caption || ''}" loading="lazy">
+          </div>
+          ${it.caption ? `<p class="caption">${it.caption}</p>` : ''}
+        </div>
+      `;
+    }
+    return `
+      <div class="gallery-card">
+        ${it.type === 'video'
+          ? `<video controls playsinline poster="${it.poster || ''}"><source src="${it.src}" type="video/mp4"></video>`
+          : `<img src="${it.src}" alt="${it.caption || ''}" loading="lazy">`}
+        ${it.caption ? `<p class="caption">${it.caption}</p>` : ''}
+      </div>
+    `;
+  }).join('');
 }
 
 document.querySelectorAll('.culture-card').forEach(card => {
