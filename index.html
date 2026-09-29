@@ -85,6 +85,26 @@ nav{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:ce
 .service h3{font-size:1.2rem}
 .service p{margin-top:10px;color:var(--muted);font-size:.95rem}
 
+/* PORTFOLIO */
+.portfolio-cta{display:flex;justify-content:center;margin-top:36px}
+dialog.pf{border:0;border-radius:var(--radius);padding:0;width:min(960px,94vw);max-height:90vh;background:var(--paper);color:var(--ink)}
+dialog.pf::backdrop{background:rgba(32,42,37,.6)}
+.pf-in{padding:32px 28px 36px;position:relative}
+.pf-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);font-size:1.3rem;cursor:pointer;color:var(--ink)}
+.pf h2{font-size:1.7rem;padding-right:44px}
+.pf .pf-ig{color:var(--coral-dark);font-weight:600;text-decoration:none}
+.pf-lead{color:var(--muted);margin-top:8px}
+.pf-chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.pf-chips span{background:var(--panel);border:1px solid var(--line);border-radius:100px;padding:5px 13px;font-size:.85rem}
+.pf-chips.work span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pf h3{font-size:1.05rem;margin:26px 0 4px}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+@media(max-width:720px){.pf-grid{grid-template-columns:1fr 1fr}.pf-in{padding:26px 16px 30px}}
+.pf-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:0}
+.pf-card img,.pf-card video{width:100%;aspect-ratio:4/5;object-fit:cover;background:#000;display:block}
+.pf-card.vid video{object-fit:contain}
+.pf-card figcaption{padding:10px 12px;font-size:.85rem;color:var(--muted)}
+
 /* PLANES */
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 @media(max-width:860px){.plans{grid-template-columns:1fr}}
@@ -266,8 +286,36 @@ footer{padding:36px 0 44px;text-align:center;color:var(--muted);font-size:.88rem
       <article class="service"><img src="community%20manager.jpg" alt="Community Manager" loading="lazy"><div class="service-body"><h3>Community Manager</h3><p>Planificación estratégica de contenido, interacción activa con tu audiencia y una estrategia de visibilidad para posicionar tu marca.</p></div></article>
       <article class="service"><img src="creacion_de_contenido.jpg" alt="Creación de contenido" loading="lazy"><div class="service-body"><h3>Creación de contenido</h3><p>Historias, reels y guiones. Ideas, copies y piezas visuales alineadas con la identidad de cada proyecto.</p></div></article>
     </div>
+    <div class="portfolio-cta"><button class="btn btn-primary" id="open-portfolio" type="button">Portfolio de clientes</button></div>
   </div>
 </section>
+
+<!-- ========== PORTFOLIO DE CLIENTES ========== -->
+<dialog class="pf" id="portfolio" aria-labelledby="pf-title"><div class="pf-in">
+  <button class="pf-close" id="close-portfolio" type="button" aria-label="Cerrar">×</button>
+  <h2 id="pf-title">Portfolio de clientes</h2>
+  <p class="pf-lead">Trabajos reales con marcas y emprendimientos.</p>
+  <h3>marazul.design · <a class="pf-ig" href="https://www.instagram.com/marazul.design/" target="_blank" rel="noopener">@marazul.design</a></h3>
+  <p class="pf-lead">Marca de artesanías hechas a mano.</p>
+  <div class="pf-chips"><span>Artículos de tela multiuso</span><span>Artesanías en yeso</span><span>Velas</span><span>Artículos personalizados</span></div>
+  <p class="pf-lead" style="margin-top:16px"><strong>Lo que hice:</strong></p>
+  <div class="pf-chips work"><span>Foto producto</span><span>Video de productos</span><span>Stories para Instagram</span><span>Posteos con copy</span></div>
+  <div class="pf-grid">
+    <figure class="pf-card"><img src="marazul-neceser-tela.jpg" alt="Canasto de tela floral marazul.design" loading="lazy"><figcaption>Artículos de tela multiuso</figcaption></figure>
+    <figure class="pf-card"><img src="marazul-porta-mate.jpg" alt="Porta mate de tela marazul.design" loading="lazy"><figcaption>Porta mate</figcaption></figure>
+    <figure class="pf-card"><img src="marazul-velas.jpg" alt="Velas artesanales en cuencos de madera" loading="lazy"><figcaption>Velas artesanales</figcaption></figure>
+    <figure class="pf-card vid"><video controls playsinline preload="metadata" poster="marazul-video-marca-poster.jpg"><source src="marazul-video-marca.mp4" type="video/mp4"></video><figcaption>Video de marca</figcaption></figure>
+    <figure class="pf-card vid"><video controls playsinline preload="metadata" poster="marazul-video-telas-poster.jpg"><source src="marazul-video-telas.mp4" type="video/mp4"></video><figcaption>Video: telas</figcaption></figure>
+    <figure class="pf-card vid"><video controls playsinline preload="metadata" poster="marazul-video-velas-poster.jpg"><source src="marazul-video-velas.mp4" type="video/mp4"></video><figcaption>Video: velas</figcaption></figure>
+  </div>
+</div></dialog>
+<script>
+(function(){var d=document.getElementById('portfolio');if(!d)return;
+document.getElementById('open-portfolio').addEventListener('click',function(){d.showModal()});
+document.getElementById('close-portfolio').addEventListener('click',function(){d.close()});
+d.addEventListener('click',function(e){if(e.target===d)d.close()});
+d.addEventListener('close',function(){d.querySelectorAll('video').forEach(function(v){v.pause()})});})();
+</script>
 
 <!-- ========== PLANES DE GESTIÓN ========== -->
 <section id="planes" class="band-white">
