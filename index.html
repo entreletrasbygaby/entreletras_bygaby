@@ -175,7 +175,7 @@ dialog.pf::backdrop{background:rgba(32,42,37,.6)}
 .gallery-card{flex:0 0 280px;scroll-snap-align:start;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
 .gallery-card img{width:100%;height:340px;object-fit:cover}
 .gallery-card video{width:100%;height:340px;object-fit:contain;background:#000}
-.gallery-card .caption{padding:12px 14px;font-size:.88rem;color:var(--muted)}
+.gallery-card .caption{padding:12px 14px;font-size:.88rem;color:var(--muted);white-space:pre-line}
 .gallery-card-pair{flex:0 0 460px}
 .gallery-card-tall{flex:0 0 300px}.gallery-card-tall img{height:auto;object-fit:contain}
 .pair-covers{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line)}
@@ -601,7 +601,7 @@ if (rToggle) rToggle.addEventListener('click', () => {
 /* CULTURA: galerías con solapas */
 const culturaGrupos = {
 "borges": [
-  {"id": "borges", "tab": "Borges", "titulo": "Borges: Ecos de un Nombre (Muestra inmersiva)", "desc": "Centro Cultural Recoleta - Agosto 2026 - fotos y video de la muestra.", "items": [{"type": "video", "src": "borges-muestra-recorrido.mp4", "poster": "borges-muestra-poster.jpg", "caption": "Recorrido por la muestra inmersiva"}, {"type": "image", "src": "borges-cartel-muestra.jpg", "caption": "Borges: Ecos de un Nombre — cartel de la muestra"}, {"type": "image", "src": "borges-hologram-sentado.jpg", "caption": "Proyección holográfica de Borges en la instalación"}, {"type": "image", "src": "borges-el-aleph.jpg", "caption": "El Aleph, de Jorge Luis Borges"}, {"type": "image", "src": "borges-retrato.jpg", "caption": "Retrato de Borges en la muestra"}, {"type": "image", "src": "borges-habitacion.jpg", "caption": "Recreación de su habitación"}, {"type": "image", "src": "borges-habitacion-2.jpg", "caption": "Recreación de su habitación, vista desde la entrada"}, {"type": "image", "src": "borges-foto-mujer.jpg", "caption": "Fotografía de Borges junto a su esposa María Kodama"}, {"type": "image", "src": "borges-linea-tiempo.jpg", "caption": "Línea de tiempo con la biografía de Borges"}, {"type": "image", "src": "borges-memes.jpg", "caption": "Memes borgeanos exhibidos en la muestra (@memesborgeanos)"}]},
+  {"id": "borges", "tab": "Borges", "titulo": "Borges: Ecos de un Nombre (Muestra inmersiva)", "desc": "Centro Cultural Recoleta - Agosto 2026 - fotos y video de la muestra.", "items": [{"type": "video", "src": "borges-muestra-recorrido.mp4", "poster": "borges-muestra-poster.jpg", "caption": "Recorrido por la muestra inmersiva"}, {"type": "image", "tall": true, "src": "collage-borges-1.jpg", "caption": "Borges: Ecos de un Nombre — cartel de la muestra\nProyección holográfica de Borges en la instalación\nLibro \"El Aleph\", de Jorge Luis Borges\nRetrato de Borges en la muestra"}, {"type": "image", "tall": true, "src": "collage-borges-2.jpg", "caption": "Recreación de su habitación\nFotografía de Borges junto a su esposa María Kodama\nLínea de tiempo con la biografía de Borges\nMemes borgeanos exhibidos en la muestra (@memesborgeanos)"}]},
   {"id": "frida", "tab": "Viva Frida (Malba)", "titulo": "Viva Frida (Muestra inmersiva)", "desc": "Museo Malba — fotos y video de la visita.", "items": [{"type": "video", "src": "viva-frida-malba.mp4", "poster": "viva-frida-malba-poster.jpg", "caption": "Exposición \"Viva Frida\" en el Museo Malba"}]}
 ],
 "visitas": [
